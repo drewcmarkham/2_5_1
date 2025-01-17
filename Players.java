@@ -1,25 +1,26 @@
 import java.util.Scanner;
 
-public class Player {
+public class Players {
 
     Scanner sc = new Scanner(System.in);
     private int player1Score = 0;
     private int player2Score = 0;
-    private String guess = "";
-    
+
+
     public void addPoints(int player, int points) {
         if (player == 1) {
-            player1Score += points;
+            this.player1Score += points;
+        } else {
+            this.player2Score += points;
         }
-        player2Score += points;
-    
     }
 
     public int getScore(int player) {
         if (player == 1) {
-            return player1Score;
+            return this.player1Score;
+        } else {
+            return this.player2Score;
         }
-        return player2Score;
     }
 
     public String getGuess() {
@@ -27,7 +28,4 @@ public class Player {
         String getGuess = sc.nextLine();
         return getGuess;
     }
-
-    
-
 }
