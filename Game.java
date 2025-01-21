@@ -1,15 +1,17 @@
 public class Game {
     private String secretWord = "";
-    private int pointValue = 1;
-    private String structure = "----------------------------";
-    private Players players;
+    private String secretWordUpd = "";
+    public int pointValue = 1;
+    private String structure = "---------------------------------------------------";
+    private final Players players;
 
     public Game(Players players){
         this.players = players;
     }
 
     public void setSecretWord() {
-        secretWord = "abcd";
+        secretWord = WordProvider.getWord();
+        secretWordUpd = secretWord;
     }
 
     public void displayPhraseStructure() {
@@ -35,10 +37,11 @@ public class Game {
     }
 
     public void scoreGuess(String guess, int player) {
-        for (int i = 0; i < secretWord.length(); i++) {
-            String sub = secretWord.substring(i, i + 1);
+        for (int i = 0; i < secretWordUpd.length(); i++) {
+            String sub = secretWordUpd.substring(i, i + 1);
             if (sub.equals(guess)) {
                 players.addPoints(player, pointValue);
+                secretWordUpd = secretWordUpd.substring(0, i) + secretWordUpd.substring(i+1);
             }
         }
     }
